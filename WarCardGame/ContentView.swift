@@ -11,8 +11,8 @@ struct ContentView: View {
     @State var playerCard = ("card8")
     @State var cpuCard = ("card13")
     
-    var playerScore = 0
-    var cpuScore = 0
+    @State var playerScore = 0
+    @State var cpuScore = 0
     var body: some View {
         
         ZStack{
@@ -67,8 +67,38 @@ struct ContentView: View {
     func deal(){
    // Randomoize player and cpu card
    // and upadte the scores
-        playerCard = "card" + String(Int.random(in: 2...14))
-        cpuCard = "card" + String(Int.random(in: 2...13))
+        var playerCardValue = Int.random(in: 2...14)
+        var cpuCardValue = Int.random(in: 7...14)
+        playerCard = "card" + String(playerCardValue)
+        cpuCard = "card" + String(cpuCardValue)
+        // update scores
+        if playerCardValue > cpuCardValue{
+            if playerCardValue == 14{
+                // Bonus for rolling an ace
+                playerScore += 5
+                cpuScore -= 2
+            }
+            else{
+                playerScore += 1
+                cpuScore -= 1
+            }
+        }
+        else if cpuCardValue > playerCardValue{
+            if cpuScore == 14{
+                // Bonus for rolling an ace
+                cpuScore += 5
+                playerScore -= 2
+            }
+            else{
+                cpuScore += 1
+                playerScore -= 1
+            }
+        }
+        else{
+            // Both get a score for tie
+            cpuScore += 1
+            playerScore += 1
+        }
     }
 }
 
