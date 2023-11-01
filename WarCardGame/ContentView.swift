@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         ZStack{
             Image("background-cloth")
             
@@ -24,7 +25,13 @@ struct ContentView: View {
                     Spacer()
                 }
                 Spacer()
-                Image("button")
+                
+                Button("Deal") {
+                    
+                    print("Deal Cards")
+                }
+                .foregroundColor(.white)
+                
                 Spacer()
                 HStack{
                     Spacer()
@@ -49,6 +56,10 @@ struct ContentView: View {
                 Spacer()
             }
         }
+    }
+    
+    func deal(){
+        print("Deal Cards")
     }
 }
 
